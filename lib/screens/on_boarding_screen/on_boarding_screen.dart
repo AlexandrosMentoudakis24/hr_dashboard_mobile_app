@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hr_dashboard_mobile_app/widgets/_global/primary_button.dart';
-import 'package:hr_dashboard_mobile_app/widgets/_global/secondary_button.dart';
 
 import 'package:hr_dashboard_mobile_app/widgets/on_boarding_screen/indexing_container.dart';
 import 'package:hr_dashboard_mobile_app/widgets/on_boarding_screen/message_container.dart';
 import 'package:hr_dashboard_mobile_app/utils/screen_size_utils/screen_size_utils.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/secondary_button.dart';
 import 'package:hr_dashboard_mobile_app/screens/auth_screen/auth_screen.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/primary_button.dart';
 
 class ScreenMessageContent {
   ScreenMessageContent({
@@ -72,13 +72,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     });
   }
 
-  void goToPrevStep() {
-    if (_currentStep - 1 < 0) {
-      return;
-    }
-
+  void skipProcedure() {
     setState(() {
-      _currentStep--;
+      _isLastStep = true;
+      _currentStep = _screenMessagesContents.length - 1;
       _activeMessageContent = _screenMessagesContents[_currentStep];
     });
   }
@@ -121,14 +118,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             const Spacer(),
             GestureDetector(
               onTap: goToNextStep,
-              child: PrimaryButton(
-                btnText: _isLastStep ? "Sign In" : "Next",
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                child: PrimaryButton(
+                  btnText: _isLastStep ? "Sign In" : "Next",
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
               child: GestureDetector(
-                onTap: goToPrevStep,
+                onTap: skipProcedure,
                 child: SecondaryButton(
                   btnText: _isLastStep ? "Sign Up" : "Skip",
                 ),

@@ -11,7 +11,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 65,
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(

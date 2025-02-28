@@ -13,7 +13,7 @@ class SecondaryButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 65,
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -41,6 +41,7 @@ class SecondaryButtonWithIcon extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 18,
+                fontWeight: FontWeight.bold,
                 color: Colors.deepPurple,
               ),
             ),
