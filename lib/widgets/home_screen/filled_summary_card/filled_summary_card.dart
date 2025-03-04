@@ -17,9 +17,10 @@ class FilledSummaryCard extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Row(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -46,6 +47,10 @@ class FilledSummaryCard extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              Image.asset(
+                //"assets/images/camera_image.png",
+                "assets/images/camera_with_stars_image.png",
               ),
             ],
           ),

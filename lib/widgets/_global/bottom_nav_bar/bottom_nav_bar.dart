@@ -34,7 +34,12 @@ List<BottomNavBarItem> _navItems = [
 ];
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  const BottomNavBar({
+    required this.onItemTapHandler,
+    super.key,
+  });
+
+  final void Function(int newIdx) onItemTapHandler;
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -70,6 +75,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             return GestureDetector(
               onTap: () {
                 if (isActiveItem) return;
+
+                widget.onItemTapHandler(item.id);
 
                 setState(() {
                   _activeItemId = item.id;

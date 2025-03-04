@@ -12,14 +12,14 @@ class EmptyMeetingsContainerIcon extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 30,
+          mainAxisSpacing: 5,
         ),
         itemCount: 6,
         itemBuilder: (context, index) {
           return Icon(
             Icons.person,
-            color: Colors.grey.withAlpha(80),
-            size: 40,
+            color: Theme.of(context).primaryColor.withAlpha(40),
+            size: 35,
           );
         },
       ),
