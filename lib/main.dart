@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:hr_dashboard_mobile_app/screens/on_boarding_screen/on_boarding_screen.dart';
+import 'package:hr_dashboard_mobile_app/screens/home_screen/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.blue,
         ),
       ),
-      home: const OnBoardingScreen(),
+      home: const HomeScreen(),
     );
   }
 }
