@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hr_dashboard_mobile_app/models/empty_content/empty_content_item.dart';
-import 'package:hr_dashboard_mobile_app/widgets/_global/empty_screen_content/empty_screen_content_container.dart';
 
-const _parentContainerPadding = EdgeInsets.symmetric(
-  horizontal: 20,
-  vertical: 20,
-);
+import 'package:hr_dashboard_mobile_app/widgets/_global/empty_screen_content/empty_screen_content_container.dart';
+import 'package:hr_dashboard_mobile_app/models/empty_content/empty_content_item.dart';
 
 final Widget _emptyWorkingTimesContainerContent = EmptyScreenContentContainer(
   emptyContentItem: EmptyContentItem(
@@ -21,7 +17,12 @@ final Widget _emptyWorkingTimesContainerContent = EmptyScreenContentContainer(
 );
 
 class WorkTimeContainer extends StatelessWidget {
-  const WorkTimeContainer({super.key});
+  const WorkTimeContainer({
+    required this.hasWorkTime,
+    super.key,
+  });
+
+  final bool hasWorkTime;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +31,12 @@ class WorkTimeContainer extends StatelessWidget {
         final maxHeight = constraints.maxHeight;
         final maxWidth = constraints.maxWidth;
 
-        return Container(
+        return SizedBox(
           height: maxHeight,
           width: maxWidth,
-          padding: _parentContainerPadding,
-          child: _emptyWorkingTimesContainerContent,
+          child: hasWorkTime
+              ? const Text("Work Time")
+              : _emptyWorkingTimesContainerContent,
         );
       },
     );

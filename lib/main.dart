@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hr_dashboard_mobile_app/screens/clock_in_screen/clock_in_screen.dart';
-import 'package:hr_dashboard_mobile_app/screens/home_screen/home_screen.dart';
 
-import 'package:hr_dashboard_mobile_app/utils/screen_size_utils/screen_size_utils.dart';
 import 'package:hr_dashboard_mobile_app/widgets/_global/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:hr_dashboard_mobile_app/utils/screen_size_utils/screen_size_utils.dart';
+import 'package:hr_dashboard_mobile_app/screens/clock_in_screen/clock_in_screen.dart';
+import 'package:hr_dashboard_mobile_app/screens/tasks_screen/tasks_screen.dart';
+import 'package:hr_dashboard_mobile_app/screens/home_screen/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   List<Widget> _screens = [
     const HomeScreen(),
     const ClockInScreen(),
+    const TasksScreen(),
   ];
 
   late Widget _currentScreen;

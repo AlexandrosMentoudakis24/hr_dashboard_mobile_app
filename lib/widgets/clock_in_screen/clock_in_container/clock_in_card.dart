@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/bordered_card_container/bordered_card_container.dart';
 
 import 'package:hr_dashboard_mobile_app/widgets/clock_in_screen/clock_in_container/single_clock_in_metrics.dart';
 import 'package:hr_dashboard_mobile_app/widgets/_global/primary_button.dart';
@@ -36,71 +37,69 @@ class ClockInCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, constraints) => Container(
-        width: constraints.maxWidth,
-        padding: _parentContainerPadding,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            width: _parentContainerBorderWidth,
-            color: Colors.black,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: constraints.maxWidth - _parentContainerPadding.horizontal,
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _cardTitleText,
-                  _cardSubTitleText,
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 1,
-              child: SizedBox(
+      builder: (context, constraints) => BorderedCardContainer(
+        maxHeight: constraints.maxHeight,
+        maxWidth: constraints.maxWidth,
+        borderWidth: _parentContainerBorderWidth,
+        childWidget: Container(
+          padding: _parentContainerPadding,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
                 width:
                     constraints.maxWidth - _parentContainerPadding.horizontal,
-                child: Row(
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: (constraints.maxWidth -
-                              _parentContainerPadding.horizontal -
-                              (2 * _parentContainerBorderWidth)) *
-                          0.5,
-                      child: const SingleClockInMetrics(
-                        titleText: "Today",
-                        hours: 0,
-                        minutes: 0,
-                      ),
-                    ),
-                    SizedBox(
-                      width: (constraints.maxWidth -
-                              _parentContainerPadding.horizontal -
-                              (2 * _parentContainerBorderWidth)) *
-                          0.5,
-                      child: const SingleClockInMetrics(
-                        titleText: "This Pay Period",
-                        hours: 12,
-                        minutes: 35,
-                      ),
-                    ),
+                    _cardTitleText,
+                    _cardSubTitleText,
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 55,
-              width: constraints.maxWidth - _parentContainerPadding.horizontal,
-              child: const PrimaryButton(
-                btnText: "Clock In",
+              Flexible(
+                flex: 1,
+                child: SizedBox(
+                  width:
+                      constraints.maxWidth - _parentContainerPadding.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: (constraints.maxWidth -
+                                _parentContainerPadding.horizontal -
+                                (2 * _parentContainerBorderWidth)) *
+                            0.5,
+                        child: const SingleClockInMetrics(
+                          titleText: "Today",
+                          hours: 0,
+                          minutes: 0,
+                        ),
+                      ),
+                      SizedBox(
+                        width: (constraints.maxWidth -
+                                _parentContainerPadding.horizontal -
+                                (2 * _parentContainerBorderWidth)) *
+                            0.5,
+                        child: const SingleClockInMetrics(
+                          titleText: "This Pay Period",
+                          hours: 12,
+                          minutes: 35,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 55,
+                width:
+                    constraints.maxWidth - _parentContainerPadding.horizontal,
+                child: const PrimaryButton(
+                  btnText: "Clock In",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

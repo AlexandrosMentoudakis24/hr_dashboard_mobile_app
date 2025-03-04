@@ -66,6 +66,7 @@ flutter:
     - assets/images/camera_with_stars_image.png
     - assets/images/clock_with_stars_image.png
     - assets/images/empty_working_times_image.png
+    - assets/images/tasks_with_stars_image.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
