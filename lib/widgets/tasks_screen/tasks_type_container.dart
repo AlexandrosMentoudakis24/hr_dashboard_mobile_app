@@ -9,13 +9,19 @@ class TasksTypeContainer extends StatefulWidget {
 }
 
 class _TasksTypeContainerState extends State<TasksTypeContainer> {
-  var _activeType = "All";
-
-  var _types = [
+  final _types = [
     "All",
     "In Progress",
     "Finished",
   ];
+
+  late String _activeType;
+  @override
+  void initState() {
+    _activeType = _types[0];
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +34,14 @@ class _TasksTypeContainerState extends State<TasksTypeContainer> {
           height: maxHeight,
           width: maxWidth,
           padding: const EdgeInsets.symmetric(
-            horizontal: 15,
+            horizontal: 8,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: _types.map(
               (type) {
                 final singleItemWidth =
-                    (maxWidth - (2 * 15)) * (1 / _types.length);
+                    (maxWidth - (2 * 8)) * (1 / _types.length);
 
                 return GestureDetector(
                   onTap: () {

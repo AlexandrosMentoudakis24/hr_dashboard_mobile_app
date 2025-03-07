@@ -1,38 +1,84 @@
 import 'package:flutter/material.dart';
 
-import 'package:hr_dashboard_mobile_app/widgets/_global/empty_screen_content/custom_displayed_container_icon_widgets/empty_tasks_container_icon.dart';
-import 'package:hr_dashboard_mobile_app/widgets/_global/empty_screen_content/empty_screen_content_container.dart';
-import 'package:hr_dashboard_mobile_app/models/empty_content/empty_content_item.dart';
+import 'package:hr_dashboard_mobile_app/widgets/home_screen/todays_tasks_container/empty_tasks_container.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/tasks/single_task_container.dart';
+import 'package:hr_dashboard_mobile_app/models/tasks/task.dart';
 
-Widget emptyTasksContainerContent = const EmptyScreenContentContainer(
-  emptyContentItem: EmptyContentItem(
-    containerTitle: "Today's Tasks",
-    containerSubTitle: "The tasks assigned to you for today",
-    emptyIconWidget: EmptyTasksContainerIcon(),
-    messageTitle: "No Tasks Assigned",
-    message:
-        "It looks like you don't have any Tasks assigned to you right now. Don't worry, the space will be updated as new Tasks become available!",
-  ),
-);
-
-class TodaysTasksContainer extends StatelessWidget {
+class TodaysTasksContainer extends StatefulWidget {
   const TodaysTasksContainer({
-    required this.hasTask,
+    required this.tasks,
     super.key,
   });
 
-  final bool hasTask;
+  final List<Task> tasks;
 
   @override
+  State<TodaysTasksContainer> createState() => _TodaysTasksContainerState();
+}
+
+class _TodaysTasksContainerState extends State<TodaysTasksContainer> {
+  @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
+    final isEmptyList = widget.tasks.isEmpty;
+
+    final Widget defaultScreenContent = LayoutBuilder(
       builder: (context, constraints) {
         return SizedBox(
-          height: constraints.maxHeight,
-          width: constraints.maxWidth,
-          child: hasTask ? Text("Tasks") : emptyTasksContainerContent,
-        );
+            width: constraints.maxWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 15,
+              children: [
+                Row(
+                  spacing: 10,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Today's Tasks",
+                      textAlign: TextAlign.left,
+                      textScaler: TextScaler.linear(1.1),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      "${widget.tasks.length}",
+                      textAlign: TextAlign.left,
+                      textScaler: const TextScaler.linear(1.1),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ],
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(0),
+                  itemCount: widget.tasks.length,
+                  itemBuilder: (context, index) {
+                    final task = widget.tasks[index];
+
+                    return Container(
+                      height: 180,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      width: constraints.maxWidth,
+                      child: SingleTaskContainer(
+                        task: task,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ));
       },
     );
+
+    return isEmptyList ? emptyTasksContainerContent : defaultScreenContent;
   }
 }

@@ -35,8 +35,8 @@ class EmptyScreenContentContainer extends StatelessWidget {
                       textScaler: const TextScaler.linear(1.1),
                       style: const TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.w700,
                         color: Colors.black,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     Padding(

@@ -1,35 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hr_dashboard_mobile_app/widgets/_global/bordered_card_container/bordered_card_container.dart';
 
+import 'package:hr_dashboard_mobile_app/widgets/_global/overflowed_container_with_card/card_displayed_texts.dart';
 import 'package:hr_dashboard_mobile_app/widgets/clock_in_screen/clock_in_container/single_clock_in_metrics.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/bordered_card_container/bordered_card_container.dart';
 import 'package:hr_dashboard_mobile_app/widgets/_global/primary_button.dart';
 
 const _parentContainerPadding = EdgeInsets.symmetric(
   horizontal: 20,
   vertical: 10,
 );
-
 const _parentContainerBorderWidth = 2.0;
-
-const _cardTitleText = Text(
-  "Total Working Hour",
-  textAlign: TextAlign.left,
-  textScaler: TextScaler.linear(1.1),
-  style: TextStyle(
-    fontSize: 15,
-    color: Colors.black,
-    fontWeight: FontWeight.bold,
-  ),
-);
-const _cardSubTitleText = Text(
-  "Paid period 01/07/2024 - 30/07/2024",
-  textAlign: TextAlign.left,
-  textScaler: TextScaler.linear(1.1),
-  style: TextStyle(
-    fontSize: 12,
-    color: Colors.black,
-  ),
-);
 
 class ClockInCard extends StatelessWidget {
   const ClockInCard({super.key});
@@ -52,8 +32,12 @@ class ClockInCard extends StatelessWidget {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _cardTitleText,
-                    _cardSubTitleText,
+                    CardTitleText(
+                      titleText: "Total Working Hour",
+                    ),
+                    CardSubTitleText(
+                      subTitleText: "Paid period 01/07/2024 - 30/07/2024",
+                    ),
                   ],
                 ),
               ),

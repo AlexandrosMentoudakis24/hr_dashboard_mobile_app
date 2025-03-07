@@ -50,7 +50,10 @@ class _ClockInScreenState extends State<ClockInScreen> {
               Container(
                 height: followingContainerHeight,
                 width: maxWidth,
-                padding: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  bottom: 10,
+                ),
                 child: const WorkTimeContainer(
                   hasWorkTime: false,
                 ),

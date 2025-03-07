@@ -14,7 +14,9 @@ class SingleTaskTypeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+      ),
       decoration: BoxDecoration(
         color: isActive ? Theme.of(context).primaryColor : Colors.transparent,
         borderRadius: BorderRadius.circular(24),
@@ -24,7 +26,7 @@ class SingleTaskTypeButton extends StatelessWidget {
         textAlign: TextAlign.center,
         textScaler: const TextScaler.linear(1.1),
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 15,
           color: isActive ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.1,

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:hr_dashboard_mobile_app/widgets/_global/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:hr_dashboard_mobile_app/screens/leave_work_screen/leave_work_screen.dart';
 import 'package:hr_dashboard_mobile_app/utils/screen_size_utils/screen_size_utils.dart';
 import 'package:hr_dashboard_mobile_app/screens/clock_in_screen/clock_in_screen.dart';
+import 'package:hr_dashboard_mobile_app/screens/expenses_screen/expenses_screen.dart';
 import 'package:hr_dashboard_mobile_app/screens/tasks_screen/tasks_screen.dart';
 import 'package:hr_dashboard_mobile_app/screens/home_screen/home_screen.dart';
 
@@ -36,10 +38,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Widget> _screens = [
-    const HomeScreen(),
-    const ClockInScreen(),
-    const TasksScreen(),
+  static const List<Widget> _screens = [
+    HomeScreen(),
+    ClockInScreen(),
+    TasksScreen(),
+    ExpensesScreen(),
+    LeaveWorkScreen(),
   ];
 
   late Widget _currentScreen;
@@ -72,7 +76,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "HR Dashboard",
       theme: ThemeData().copyWith(
-        scaffoldBackgroundColor: Colors.white,
         primaryColor: Colors.deepPurple,
         secondaryHeaderColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData().copyWith(
@@ -87,18 +90,22 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       home: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
         body: SizedBox(
           height: mediaQuerySizes.height,
           width: mediaQuerySizes.width,
           child: Column(
             children: [
               Container(
-                height: screenSizes.height - systemStatusBarHeight,
+                height: screenSizes.height,
                 width: screenSizes.width,
-                margin: EdgeInsets.only(
+                padding: EdgeInsets.only(
                   top: systemStatusBarHeight,
                 ),
-                child: _currentScreen,
+                child: Container(
+                  color: Colors.white,
+                  child: _currentScreen,
+                ),
               ),
               BottomNavBar(
                 onItemTapHandler: (newIdx) {

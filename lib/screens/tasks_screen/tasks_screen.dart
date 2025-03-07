@@ -3,12 +3,174 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:hr_dashboard_mobile_app/widgets/_global/overflowed_container_with_card/overflowed_container_with_card.dart';
-import 'package:hr_dashboard_mobile_app/widgets/clock_in_screen/clock_in_container/clock_in_card.dart';
 import 'package:hr_dashboard_mobile_app/widgets/home_screen/todays_tasks_container/todays_tasks_container.dart';
 import 'package:hr_dashboard_mobile_app/widgets/tasks_screen/tasks_type_container.dart';
+import 'package:hr_dashboard_mobile_app/widgets/tasks_screen/tasks_card.dart';
+import 'package:hr_dashboard_mobile_app/widgets/_global/primary_button.dart';
+import 'package:hr_dashboard_mobile_app/models/tasks/task.dart';
+import 'package:hr_dashboard_mobile_app/models/users/user.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  late List<Task> _tasks;
+
+  @override
+  void initState() {
+    _tasks = [
+      Task(
+        id: 1,
+        title: "First task",
+        taskState: TaskStateType.inProgress,
+        taskPriority: TaskPriorityType.medium,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+      Task(
+        id: 2,
+        title: "First task",
+        taskState: TaskStateType.done,
+        taskPriority: TaskPriorityType.high,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+      Task(
+        id: 3,
+        title: "First task",
+        taskState: TaskStateType.planning,
+        taskPriority: TaskPriorityType.high,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+      Task(
+        id: 4,
+        title: "First task",
+        taskState: TaskStateType.planning,
+        taskPriority: TaskPriorityType.high,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+      Task(
+        id: 5,
+        title: "First task",
+        taskState: TaskStateType.planning,
+        taskPriority: TaskPriorityType.high,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +206,9 @@ class TasksScreen extends StatelessWidget {
                     "assets/images/tasks_with_stars_image.png",
                   ),
                 ),
-                cardWidget: const ClockInCard(),
+                cardWidget: TasksCard(
+                  tasks: _tasks,
+                ),
               ),
               SizedBox(
                 height: followingContainerHeight,
@@ -53,25 +217,30 @@ class TasksScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 15,
+                    spacing: 20,
                     children: [
                       Container(
-                        height: 45,
-                        width: maxWidth,
-                        margin: const EdgeInsets.only(
-                          top: 20,
+                        height: 60,
+                        margin: const EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 25,
                         ),
-                        child: const TasksTypeContainer(),
+                        child: const PrimaryButton(
+                          btnText: "Create Task",
+                        ),
                       ),
                       SizedBox(
-                        height: 350,
+                        height: 45,
                         width: maxWidth,
-                        child: const TodaysTasksContainer(
-                          hasTask: false,
-                        ),
+                        child: const TasksTypeContainer(),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                        ),
+                        child: TodaysTasksContainer(
+                          tasks: _tasks,
+                        ),
                       ),
                     ],
                   ),

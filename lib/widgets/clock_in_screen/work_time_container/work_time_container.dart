@@ -7,8 +7,10 @@ final Widget _emptyWorkingTimesContainerContent = EmptyScreenContentContainer(
   emptyContentItem: EmptyContentItem(
     containerTitle: "Working Period",
     containerSubTitle: "Your Working time in this paid period",
-    emptyIconWidget: Image.asset(
-      "assets/images/empty_working_times_image.png",
+    emptyIconWidget: Expanded(
+      child: Image.asset(
+        "assets/images/empty_working_times_image.png",
+      ),
     ),
     messageTitle: "No Working Time Available",
     message:

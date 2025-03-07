@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hr_dashboard_mobile_app/models/tasks/task.dart';
+import 'package:hr_dashboard_mobile_app/models/users/user.dart';
 
 import 'package:hr_dashboard_mobile_app/widgets/home_screen/todays_meetings_container/todays_meetings_container.dart';
 import 'package:hr_dashboard_mobile_app/widgets/home_screen/todays_tasks_container/todays_tasks_container.dart';
@@ -19,6 +21,74 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late List<Task> _tasks;
+
+  @override
+  void initState() {
+    _tasks = [
+      Task(
+        id: 1,
+        title: "First task",
+        taskState: TaskStateType.inProgress,
+        taskPriority: TaskPriorityType.medium,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+      Task(
+        id: 2,
+        title: "First task",
+        taskState: TaskStateType.done,
+        taskPriority: TaskPriorityType.high,
+        assignees: [
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+          User(
+            id: 1,
+            firstName: "Alexandros",
+            lastName: "Mentoudakis",
+          ),
+        ],
+        dueDate: DateTime.now(),
+      ),
+    ];
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -32,41 +102,21 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: _innerContainerPadding,
           child: SingleChildScrollView(
             child: Column(
+              spacing: 15,
               children: [
                 SizedBox(
                   height: _userInfosContainerHeight,
                   width: maxWidth,
                   child: const UserInfosContainer(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: SizedBox(
-                    height: _filledSummaryCardHeight,
-                    width: maxWidth,
-                    child: const FilledSummaryCard(),
-                  ),
+                SizedBox(
+                  height: _filledSummaryCardHeight,
+                  width: maxWidth,
+                  child: const FilledSummaryCard(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: SizedBox(
-                    height: 260,
-                    width: maxWidth,
-                    child: const TodaysMeetingsContainer(
-                      hasMeeting: false,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15,
-                  ),
-                  child: SizedBox(
-                    height: 260,
-                    width: maxWidth,
-                    child: const TodaysTasksContainer(
-                      hasTask: false,
-                    ),
-                  ),
+                const TodaysMeetingsContainer(),
+                TodaysTasksContainer(
+                  tasks: _tasks,
                 ),
               ],
             ),

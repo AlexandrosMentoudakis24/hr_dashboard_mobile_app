@@ -36,7 +36,7 @@ class SingleClockInMetrics extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Icon(
-                    Icons.timer_outlined,
+                    Icons.access_time_outlined,
                     size: 18,
                     color: Colors.black,
                   ),
